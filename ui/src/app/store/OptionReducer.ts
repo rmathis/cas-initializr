@@ -2,7 +2,7 @@ import { createSlice, createSelector, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { useMemo } from 'react';
 import { orderBy, reverse, sortBy, uniq } from "lodash";
-import { RootState } from "./RootReducer";
+import { RootState } from "./store";
 
 import {
     CasVersionOption,

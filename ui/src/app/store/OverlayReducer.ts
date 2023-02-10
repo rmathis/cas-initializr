@@ -2,7 +2,7 @@ import React from 'react';
 import { createSlice, createSelector, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
-import { RootState } from "./RootReducer";
+import { RootState } from "./store";
 import { Overlay } from "../data/Overlay";
 import { useDependencyList } from "./OptionReducer";
 import { Dependency } from "../data/Dependency";

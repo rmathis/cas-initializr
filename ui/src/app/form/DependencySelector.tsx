@@ -114,7 +114,7 @@ export default function DependencySelector({ onSelectedChange }: DependencySelec
     const handleToggle = (val: string) => {
         onSelectedChange(
             selected.indexOf(val) > -1
-                ? [...selected.filter((d) => d !== val)]
+                ? [...selected.filter((d: string) => d !== val)]
                 : [...selected, val]
         );
     };

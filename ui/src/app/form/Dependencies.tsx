@@ -20,14 +20,21 @@ import {
     useOverlayDependencies,
 } from "../store/OverlayReducer";
 import { Action, useCommand } from "../core/Keyboard";
+import { Settings } from "@mui/icons-material";
+import { ConfigurationPropertiesDialog } from "../properties/ConfigurationPropertiesDialog";
 
 export default function Dependencies() {
     const selectedDependencies = useMappedOverlayDependencies();
     const selected = useOverlayDependencies();
+    const [settings, setSettings] = React.useState<string | null | undefined>();
     const dispatch = useAppDispatch();
 
     const remove = (id: string) => {
         dispatch(setDependencies(selected.filter((s: string) => s !== id)));
+    };
+
+    const showSettings = (id: string) => {
+        setSettings(id);
     };
 
     const clear = () => {
@@ -42,6 +49,7 @@ export default function Dependencies() {
 
     return (
         <>
+            {settings && <ConfigurationPropertiesDialog id={ settings } onClose={() => setSettings(null)} />}
             <Grid
                 container
                 justifyContent="space-between"
@@ -85,19 +93,26 @@ export default function Dependencies() {
                             {s !== undefined ? (
                                 <ListItem
                                     secondaryAction={
-                                        <IconButton
-                                            edge="end"
-                                            aria-label="delete"
-                                            onClick={() => remove(s.id)}
-                                        >
-                                            <DeleteIcon />
-                                        </IconButton>
+                                        <>
+                                            <IconButton
+                                                edge="end"
+                                                aria-label="delete"
+                                                onClick={() => showSettings(s.id)}
+                                            >
+                                                <Settings />
+                                            </IconButton>
+                                            &nbsp;
+                                            <IconButton
+                                                edge="end"
+                                                aria-label="delete"
+                                                onClick={() => remove(s.id)}
+                                            >
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        </>
                                     }
                                 >
-                                    <Tooltip
-                                        title={s.id}
-                                        placement="top-start"
-                                    >
+                                    <Tooltip title={s.id} placement="top-start">
                                         <ListItemText
                                             primary={s.name}
                                             secondary={s.description}

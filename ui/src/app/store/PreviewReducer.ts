@@ -1,7 +1,7 @@
 import { createSlice, createSelector, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
-import { RootState } from "./RootReducer";
+import { RootState } from "./store";
 import { FileTreeItem } from '../file/tree';
 
 export interface PreviewState {
